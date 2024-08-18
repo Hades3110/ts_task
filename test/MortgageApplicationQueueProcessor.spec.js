@@ -1,8 +1,9 @@
 const assert = require('assert');
-const MortgageApplicationQueueProcessor = require('../src/MortgageApplicationQueueProcessor');
-const Customer = require('../src/domain/Customer');
-const NotEligibleForMortgageException = require('../src/exceptions/NotEligibleForMortgageException');
-const WrongDataException = require('../src/exceptions/WrongDataException');
+
+const MortgageApplicationQueueProcessor = require('../dist/MortgageApplicationQueueProcessor');
+const Customer = require('../dist/domain/Customer');
+const NotEligibleForMortgageException = require('../dist/exceptions/NotEligibleForMortgageException');
+const WrongDataException = require('../dist/exceptions/WrongDataException');
 
 describe('MortgageApplicationQueueProcessor', () => {
     let customerRepositoryMock = {};
@@ -26,7 +27,7 @@ describe('MortgageApplicationQueueProcessor', () => {
             [3, 0, 0, 400, 0],
             [4, 500, 1, 1000, 500]
         ].forEach(([customerId, balance, badCreditHistoryCount, amountRequested, expected]) => {
-            it(`given a customerId ${customerId} when is valid then request is processed`, () => {
+            it(`given a customerId ${ customerId } when is valid then request is processed`, () => {
                 const customer = new Customer(customerId, 'first', 'last', balance, badCreditHistoryCount);
                 customerRepositoryMock.get = () => customer;
 
