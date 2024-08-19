@@ -44,8 +44,8 @@ describe('MortgageApplicationQueueProcessor', () => {
 
     describe('unhappy path test', () => {
         it(`given a customerId when not valid then request fails`, () => {
-            const customerId: number = 1000;
-            const amountRequested: number = 1500;
+            const customerId = 1000;
+            const amountRequested = 1500;
 
             customerRepositoryMock.get = () => null;
 
