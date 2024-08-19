@@ -1,17 +1,15 @@
 import WrongDataException from "./exceptions/WrongDataException";
 import Customer from "./domain/Customer";
+import { ICustomerRepository } from "./types/interfaces/customRepository";
+import { WrongDataErrorMessages } from "./types/enums/wrongDataErrorMessages";
 
-export interface ICustomerRepository {
-  get(customerId?: number): Customer | null;
-}
-
-class MortgageApplicationQueueProcessor {
-  customerRepository: ICustomerRepository;
+export default class MortgageApplicationQueueProcessor {
+  readonly customerRepository: ICustomerRepository;
   constructor(customerRepository: ICustomerRepository) {
     this.customerRepository = customerRepository;
   }
 
-  static MESSAGE_INVALID_CUSTOMER = "Customer not found!";
+  static readonly MESSAGE_INVALID_CUSTOMER = WrongDataErrorMessages.INVALID_CUSTOMER_DATA
 
   checkWrongData(customer: Customer) {
     if (!customer)
@@ -33,5 +31,3 @@ class MortgageApplicationQueueProcessor {
     return customer;
   }
 }
-
-export default MortgageApplicationQueueProcessor

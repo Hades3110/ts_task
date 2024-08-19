@@ -1,12 +1,7 @@
 import NotEligibleForMortgageException from "../exceptions/NotEligibleForMortgageException";
+import { MortgageErrorMessages } from "../types/enums/mortgageErrorMessages";
+import { ICustomer } from "../types/interfaces/customer";
 
-export interface ICustomer {
-  id: number;
-  firstName: string;
-  lastName: string;
-  balance: number;
-  badCreditHistoryCount: number;
-}
 
 export default class Customer implements ICustomer {
   id: number;
@@ -32,7 +27,7 @@ export default class Customer implements ICustomer {
     if (this.isEligibleForMortgage(amount)) {
       this.balance += amount;
     } else {
-      throw new NotEligibleForMortgageException();
+      throw new NotEligibleForMortgageException(MortgageErrorMessages.INSUFFICIENT_FUNDS);
     }
   }
 

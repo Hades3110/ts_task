@@ -1,9 +1,10 @@
-import { ICustomerRepository } from "../src/MortgageApplicationQueueProcessor";
-const assert = require("assert");
-const MortgageApplicationQueueProcessor = require("../src/MortgageApplicationQueueProcessor");
-const Customer = require("../src/domain/Customer");
-const NotEligibleForMortgageException = require("../src/exceptions/NotEligibleForMortgageException");
-const WrongDataException = require("../src/exceptions/WrongDataException");
+import assert from "assert";
+import Customer from "../src/domain/Customer";
+import NotEligibleForMortgageException from "../src/exceptions/NotEligibleForMortgageException";
+import MortgageApplicationQueueProcessor from "../src/MortgageApplicationQueueProcessor";
+import { ICustomerRepository } from "../src/types/interfaces/customRepository";
+import { WrongDataErrorMessages } from "../src/types/enums/wrongDataErrorMessages";
+
 
 describe("MortgageApplicationQueueProcessor", () => {
   let customerRepositoryMock: ICustomerRepository;
@@ -65,7 +66,7 @@ describe("MortgageApplicationQueueProcessor", () => {
 
       assert.throws(
         () => process(customerId, amountRequested, customerRepositoryMock),
-        WrongDataException
+        WrongDataErrorMessages.INVALID_CUSTOMER_DATA
       );
     });
   });

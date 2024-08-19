@@ -1,6 +1,8 @@
+import { MortgageErrorMessages } from "../types/enums/mortgageErrorMessages";
+
 export default class NotEligibleForMortgageException extends Error {
-  constructor(message?: string) {
+  constructor(message: MortgageErrorMessages) {
     super(message);
-    this.name = "NotEligibleForMortgageException";
+    this.name = MortgageErrorMessages.NOT_ELIGIBLE_FOR_MORTGAGE_EXCEPTION
   }
 }

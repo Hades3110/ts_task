@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "JS Clean Design practice",
   "scripts": {
-    "test": "mocha \"./**/*.spec.js\""
+    "test": "mocha --require ts-node/register './test/**/*.spec.ts'",
+    "start": "ts-node 'src/MortgageApplicationQueueProcessor.ts'"
   },
   "author": "",
   "license": "ISC",
@@ -12,6 +13,7 @@
     "@types/node": "^22.4.0",
     "mocha": "5.2.0",
     "mocha-junit-reporter": "^2.0.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   }
 }

@@ -1,6 +1,8 @@
+import { WrongDataErrorMessages } from "../types/enums/wrongDataErrorMessages";
+
 export default class WrongDataException extends Error {
-  constructor(message: string) {
+  constructor(message: WrongDataErrorMessages) {
     super(message);
-    this.name = "WrongDataException";
+    this.name = WrongDataErrorMessages.WRONG_DATA_EXCEPTION
   }
 }
