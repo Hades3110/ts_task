@@ -10,7 +10,8 @@ export default class Customer implements ICustomer {
     public balance: number,
     public badCreditHistoryCount: number
   ) {}
-  updateBalance(amount: number) {
+  
+  public updateBalance(amount: number) {
     if (this.isEligibleForMortgage(amount)) {
       this.balance += amount;
     } else {
@@ -20,7 +21,7 @@ export default class Customer implements ICustomer {
     }
   }
 
-  isEligibleForMortgage(amountRequested: number): boolean {
+  private isEligibleForMortgage(amountRequested: number): boolean {
     let isEligibleForMortgage = false;
 
     if (this.badCreditHistoryCount === 0 && this.balance > 0)
