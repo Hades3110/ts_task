@@ -5,5 +5,4 @@ export interface ICustomer {
     balance: number;
     badCreditHistoryCount: number;
     updateBalance(amount: number): void;
-    isEligibleForMortgage(amountRequested: number): boolean;
 }
