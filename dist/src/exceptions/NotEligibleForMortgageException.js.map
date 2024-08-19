@@ -1,0 +1,1 @@
+{"version":3,"file":"NotEligibleForMortgageException.js","sourceRoot":"","sources":["../../../src/exceptions/NotEligibleForMortgageException.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,OAAO,OAAO,+BAAgC,SAAQ,KAAK;IAC9D,YAAY,OAAgB;QACxB,KAAK,CAAC,OAAO,CAAC,CAAC;QACf,IAAI,CAAC,IAAI,GAAG,iCAAiC,CAAC;IAClD,CAAC;CACJ"}
