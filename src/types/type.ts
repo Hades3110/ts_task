@@ -7,7 +7,6 @@ interface CustomerModel {
   balance: number;
   badCreditHistoryCount: number;
   updateBalance: (amount: number) => void;
-  // isEligibleForMortgage: (amountRequested: number) => boolean;
 }
 
 type CustomerRepository = {
