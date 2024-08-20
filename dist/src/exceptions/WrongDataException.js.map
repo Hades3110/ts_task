@@ -1,1 +1,0 @@
-{"version":3,"file":"WrongDataException.js","sourceRoot":"","sources":["../../../src/exceptions/WrongDataException.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,OAAO,OAAO,kBAAmB,SAAQ,KAAK;IACjD,YAAY,OAAgB;QACxB,KAAK,CAAC,OAAO,CAAC,CAAC;QACf,IAAI,CAAC,IAAI,GAAG,oBAAoB,CAAC;IACrC,CAAC;CACJ"}
