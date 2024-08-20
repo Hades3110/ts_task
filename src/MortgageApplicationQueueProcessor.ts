@@ -1,9 +1,6 @@
 import Customer from "./domain/Customer";
 import WrongDataException from "./exceptions/WrongDataException";
-
-type CustomerRepository = {
-  get: (customerId: number) => Customer | null;
-};
+import { CustomerRepository } from "./types/type";
 
 export default class MortgageApplicationQueueProcessor {
   private customerRepository: CustomerRepository;
@@ -12,13 +9,11 @@ export default class MortgageApplicationQueueProcessor {
     this.customerRepository = customerRepository;
   }
 
-  static MESSAGE_INVALID_CUSTOMER: string = "Customer not found!";
+  static MESSAGE_INVALID_CUSTOMER = "Customer not found!";
 
   private checkWrongData(customer: Customer | null): void {
     if (!customer) {
-      throw new WrongDataException(
-        MortgageApplicationQueueProcessor.MESSAGE_INVALID_CUSTOMER
-      );
+      throw new WrongDataException(MortgageApplicationQueueProcessor.MESSAGE_INVALID_CUSTOMER);
     }
   }
 
@@ -34,6 +29,6 @@ export default class MortgageApplicationQueueProcessor {
   private getCustomer(customerId: number): Customer {
     const customer = this.customerRepository.get(customerId);
     this.checkWrongData(customer);
-    return customer!;
+    return customer as Customer;
   }
 }

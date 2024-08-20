@@ -1,35 +1,14 @@
 import NotEligibleForMortgageException from "../exceptions/NotEligibleForMortgageException";
-
-interface CustomerModel {
-  id: number;
-  firstName: string;
-  lastName: string;
-  balance: number;
-  badCreditHistoryCount: number;
-  updateBalance: (amount: number) => void;
-  isEligibleForMortgage: (amountRequested: number) => boolean;
-}
+import { CustomerModel } from "../types/type";
 
 export default class Customer implements CustomerModel {
-  id: number;
-  firstName: string;
-  lastName: string;
-  balance: number;
-  badCreditHistoryCount: number;
-
   constructor(
-    id: number,
-    firstName: string,
-    lastName: string,
-    balance: number,
-    badCreditHistoryCount: number
-  ) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.balance = balance;
-    this.badCreditHistoryCount = badCreditHistoryCount;
-  }
+    public id: number,
+    public firstName: string,
+    public lastName: string,
+    public balance: number,
+    public badCreditHistoryCount: number
+  ) {}
 
   updateBalance(amount: number): void {
     if (this.isEligibleForMortgage(amount)) {
@@ -39,12 +18,9 @@ export default class Customer implements CustomerModel {
     }
   }
 
-  isEligibleForMortgage(amountRequested: number): boolean {
+  private isEligibleForMortgage(amountRequested: number): boolean {
     let isEligibleForMortgage = false;
-
-    if (this.badCreditHistoryCount === 0 && this.balance > 0)
-      isEligibleForMortgage = this.balance * 2 >= amountRequested;
-
+    if (this.badCreditHistoryCount === 0 && this.balance > 0) isEligibleForMortgage = this.balance * 2 >= amountRequested;
     return isEligibleForMortgage;
   }
 }
