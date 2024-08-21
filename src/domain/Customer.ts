@@ -9,21 +9,15 @@ interface Customer {
 }
 
 class Customer implements Customer {
-    id: number;
-    firstName: string;
-    lastName: string;
-    balance: number;
-    badCreditHistoryCount: number;
+    constructor(
+        public id: number,
+        public firstName: string,
+        public lastName: string,
+        public balance: number,
+        public badCreditHistoryCount: number
+    ) {}
 
-    constructor(id: number, firstName: string, lastName: string, balance: number, badCreditHistoryCount: number) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.balance = balance;
-        this.badCreditHistoryCount = badCreditHistoryCount;
-    }
-
-    static MESSAGE_NOT_ELIGIBLE_FOR_MORTGAGE: string = 'Not eligible for mortgage exception!';
+    private static readonly MESSAGE_NOT_ELIGIBLE_FOR_MORTGAGE = 'Not eligible for mortgage exception!';
 
     updateBalance(amount: number): void {
         if (this.isEligibleForMortgage(amount)) {
@@ -35,7 +29,7 @@ class Customer implements Customer {
     }
 
 isEligibleForMortgage(amountRequested: number): boolean {
-    let isEligibleForMortgage: boolean = false;
+    let isEligibleForMortgage = false;
 
     if (this.badCreditHistoryCount === 0 && this.balance > 0)
         isEligibleForMortgage = this.balance * 2 >= amountRequested;

@@ -12,7 +12,7 @@ class MortgageApplicationQueueProcessor {
         this.customerRepository = customerRepository;
     }
 
-    static MESSAGE_INVALID_CUSTOMER: string = 'Customer not found!';
+    private static readonly MESSAGE_INVALID_CUSTOMER: string = 'Customer not found!';
 
     checkWrongData(customer: Customer | null): void {
         if (!customer)
