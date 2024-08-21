@@ -9,13 +9,13 @@ interface CustomerRepository {
 }
 
 class MortgageApplicationQueueProcessor {
+    private static readonly MESSAGE_INVALID_CUSTOMER = 'Customer not found!';
     private customerRepository: CustomerRepository;
 
     constructor(customerRepository: CustomerRepository) {
         this.customerRepository = customerRepository;
     }
 
-    static MESSAGE_INVALID_CUSTOMER = 'Customer not found!';
 
     private checkWrongData(customer: Customer | null): void {
         if (!customer) {
