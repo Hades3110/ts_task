@@ -1,21 +1,17 @@
 const NotEligibleForMortgageException = require("../exceptions/NotEligibleForMortgageException");
 
-interface CustomerConstructor {
+
+export interface CustomerConstructor {
     id: number;
     firstName: string;
     lastName: string;
     balance: number;
     badCreditHistoryCount: number;
-    updateBalance:(amount : number) => void
+    updateBalance:(amount : number) => void;
+    isEligibleForMortgage(amountRequested: number) : boolean;
 }
 
 module.exports = class Customer implements CustomerConstructor {
-
-    // id: number;
-    // firstName: string;
-    // lastName: string;
-    // balance: number;
-    // badCreditHistoryCount: number;
 
     constructor(public id:number, public firstName:string, public lastName: string, public balance: number,public  badCreditHistoryCount: number) {
        
