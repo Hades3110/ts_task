@@ -7,7 +7,6 @@ export interface ICustomer {
     balance: number;
     badCreditHistoryCount: number;
     updateBalance(amount: number): void;
-    isEligibleForMortgage(amountRequested: number): boolean;
 }
 
 export class Customer implements ICustomer {
@@ -19,7 +18,7 @@ export class Customer implements ICustomer {
         public badCreditHistoryCount: number
     ) {}
 
-    updateBalance(amount: number): void {
+    updateBalance(amount: number) {
         if (this.isEligibleForMortgage(amount)) {
             this.balance += amount;
         } else {
@@ -27,7 +26,7 @@ export class Customer implements ICustomer {
         }
     }
 
-    isEligibleForMortgage(amountRequested: number): boolean {
+    private isEligibleForMortgage(amountRequested: number)   {
         let isEligibleForMortgage: boolean = false;
 
         if (this.badCreditHistoryCount === 0 && this.balance > 0) {
