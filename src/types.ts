@@ -6,7 +6,6 @@ export interface CustomerInterface {
   badCreditHistoryCount: number;
 
   updateBalance(amount: number): void;
-  isEligibleForMortgage(amountRequested: number): boolean;
 }
 
 export interface CustomerRepositoryInterface {

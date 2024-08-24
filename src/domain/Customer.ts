@@ -10,7 +10,7 @@ export default class Customer implements CustomerInterface {
     public badCreditHistoryCount: number
   ) {}
 
-  updateBalance(amount: number): void {
+  public updateBalance(amount: number): void {
     if (this.isEligibleForMortgage(amount)) {
       this.balance += amount;
     } else {
@@ -18,7 +18,7 @@ export default class Customer implements CustomerInterface {
     }
   }
 
-  isEligibleForMortgage(amountRequested: number): boolean {
+  private isEligibleForMortgage(amountRequested: number): boolean {
     return (
       this.badCreditHistoryCount === 0 && this.balance * 2 >= amountRequested
     );

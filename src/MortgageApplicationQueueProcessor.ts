@@ -3,7 +3,7 @@ const WrongDataException = require('./exceptions/WrongDataException');
 
 export default class MortgageApplicationQueueProcessor {
   private customerRepository: CustomerRepositoryInterface;
-  static readonly MESSAGE_INVALID_CUSTOMER: string = 'Customer not found!';
+  private static readonly MESSAGE_INVALID_CUSTOMER = 'Customer not found!';
 
   constructor(customerRepository: CustomerRepositoryInterface) {
     this.customerRepository = customerRepository;
