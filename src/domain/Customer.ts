@@ -1,16 +1,17 @@
 import NotEligibleForMortgageException from "../exceptions/NotEligibleForMortgageException";
 
-export interface CustomerIn {
+export interface ICustomer {
     id: number;
     firstName: string;
     lastName: string;
     balance: number;
     badCreditHistoryCount: number;
     updateBalance(amount: number): void;
-    isEligibleForMortgage(amountRequested: number): boolean
+    isEligibleForMortgage(amountRequested: number): boolean;
 }
-export class Customer {
-   constructor(
+
+export class Customer implements ICustomer {
+    constructor(
         public id: number,
         public firstName: string,
         public lastName: string,
@@ -29,8 +30,9 @@ export class Customer {
     isEligibleForMortgage(amountRequested: number): boolean {
         let isEligibleForMortgage: boolean = false;
 
-        if (this.badCreditHistoryCount === 0 && this.balance > 0)
+        if (this.badCreditHistoryCount === 0 && this.balance > 0) {
             isEligibleForMortgage = this.balance * 2 >= amountRequested;
+        }
 
         return isEligibleForMortgage;
     }
