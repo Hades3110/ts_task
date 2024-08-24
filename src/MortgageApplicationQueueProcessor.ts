@@ -1,14 +1,25 @@
 import WrongDataException from "./exceptions/WrongDataException";
 
+interface Customer {
+    id: number;
+    firstName: string;
+    lastName: string;
+    balance: number;
+    badCreditHistoryCount: number;
+    updateBalance(amount: number): void;
+}
+interface CustomerRepo {
+    get(customerId: number): Customer;
+}
 export class MortgageApplicationQueueProcessor {
-    customerRepository:any
-    constructor(customerRepository:any) {
+    private customerRepository:CustomerRepo
+    constructor(customerRepository:CustomerRepo) {
         this.customerRepository = customerRepository;
     }
 
-    static MESSAGE_INVALID_CUSTOMER:string = 'Customer not found!';
+    static readonly MESSAGE_INVALID_CUSTOMER = 'Customer not found!';
 
-    checkWrongData(customer:any):void{
+    checkWrongData(customer:Customer):void{
         if (!customer)
             throw new WrongDataException(MortgageApplicationQueueProcessor.MESSAGE_INVALID_CUSTOMER);
     }
@@ -17,11 +28,11 @@ export class MortgageApplicationQueueProcessor {
         this.updateBalance(customerId, amountRequested);
     }
     updateBalance(customerId:number, amountRequested:number):void {
-        const customer:any = this.getCustomer(customerId);
+        const customer = this.getCustomer(customerId);
         customer.updateBalance(amountRequested);
     }
-    getCustomer(customerId:number) :any {
-        const customer:any = this.customerRepository.get(customerId);
+    getCustomer(customerId:number) {
+        const customer = this.customerRepository.get(customerId);
         this.checkWrongData(customer);
         return customer;
     }
