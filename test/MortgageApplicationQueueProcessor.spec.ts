@@ -1,14 +1,15 @@
-const assert = require('assert');
-const MortgageApplicationQueueProcessor = require('../src/MortgageApplicationQueueProcessor');
-const Customer = require('../src/domain/Customer');
-const NotEligibleForMortgageException = require('../src/exceptions/NotEligibleForMortgageException');
-const WrongDataException = require('../src/exceptions/WrongDataException');
+import assert from "assert";
+import MortgageApplicationQueueProcessor from "../src/MortgageApplicationQueueProcessor";
+import Customer from "../src/domain/Customer";
+import NotEligibleForMortgageException from "../src/exceptions/NotEligibleForMortgageException";
+import WrongDataException from "../src/exceptions/WrongDataException";
+import { CustomerRepository } from "../src/MortgageApplicationQueueProcessor";
 
 describe('MortgageApplicationQueueProcessor', () => {
-    let customerRepositoryMock = {};
+    let customerRepositoryMock: Partial<CustomerRepository> = {};
 
-    const process = (customerId, amountRequested, customerRepositoryMock) => {
-        const processor = new MortgageApplicationQueueProcessor(customerRepositoryMock);
+    const process = (customerId: number, amountRequested: number, customerRepositoryMock: Partial<CustomerRepository>): void => {
+        const processor = new MortgageApplicationQueueProcessor(customerRepositoryMock as CustomerRepository);
         try {
             processor.processRequest(customerId, amountRequested);
         } catch (e) {
