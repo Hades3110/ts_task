@@ -1,6 +1,15 @@
 import NotEligibleForMortgageException from "../exceptions/NotEligibleForMortgageException";
 
-export default class Customer {
+export interface CustomerIn {
+    id: number;
+    firstName: string;
+    lastName: string;
+    balance: number;
+    badCreditHistoryCount: number;
+    updateBalance(amount: number): void;
+    isEligibleForMortgage(amountRequested: number): boolean
+}
+export class Customer {
    constructor(
         public id: number,
         public firstName: string,

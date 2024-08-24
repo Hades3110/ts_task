@@ -1,15 +1,8 @@
 import WrongDataException from "./exceptions/WrongDataException";
+import {CustomerIn} from "./domain/Customer"
 
-interface Customer {
-    id: number;
-    firstName: string;
-    lastName: string;
-    balance: number;
-    badCreditHistoryCount: number;
-    updateBalance(amount: number): void;
-}
 interface CustomerRepo {
-    get(customerId: number): Customer;
+    get(customerId: number): CustomerIn;
 }
 export class MortgageApplicationQueueProcessor {
     private customerRepository:CustomerRepo
@@ -19,7 +12,7 @@ export class MortgageApplicationQueueProcessor {
 
     static readonly MESSAGE_INVALID_CUSTOMER = 'Customer not found!';
 
-    checkWrongData(customer:Customer):void{
+    checkWrongData(customer:CustomerIn):void{
         if (!customer)
             throw new WrongDataException(MortgageApplicationQueueProcessor.MESSAGE_INVALID_CUSTOMER);
     }
