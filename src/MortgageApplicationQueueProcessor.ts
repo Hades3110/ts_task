@@ -11,15 +11,15 @@ interface CustomerRepository {
 }
 
 class MortgageApplicationQueueProcessor {
-  customerRepository: CustomerRepository;
+  private customerRepository: CustomerRepository;
 
   constructor(customerRepository: CustomerRepository) {
     this.customerRepository = customerRepository;
   }
 
-  static MESSAGE_INVALID_CUSTOMER: string = "Customer not found!";
+  private static readonly MESSAGE_INVALID_CUSTOMER = "Customer not found!";
 
-  checkWrongData(customer: NullableCustomer): void {
+  private checkWrongData(customer: NullableCustomer): void {
     if (!customer)
       throw new WrongDataException(
         MortgageApplicationQueueProcessor.MESSAGE_INVALID_CUSTOMER
@@ -29,14 +29,14 @@ class MortgageApplicationQueueProcessor {
   processRequest(customerId: number, amountRequested: number): void {
     this.updateBalance(customerId, amountRequested);
   }
-  updateBalance(customerId: number, amountRequested: number): void {
+  private updateBalance(customerId: number, amountRequested: number): void {
     const customer = this.getCustomer(customerId);
     customer?.updateBalance(amountRequested);
   }
-  getCustomer(customerId: number): NullableCustomer {
+  private getCustomer(customerId: number): Customer {
     const customer = this.customerRepository.get(customerId);
     this.checkWrongData(customer);
-    return customer;
+    return customer as Customer;
   }
 }
 

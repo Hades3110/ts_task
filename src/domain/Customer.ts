@@ -23,7 +23,7 @@ module.exports = class Customer {
        }
     }
 
-    isEligibleForMortgage(amountRequested:number):boolean {
+   private isEligibleForMortgage(amountRequested:number):boolean {
         let isEligibleForMortgage = false;
 
         if (this.badCreditHistoryCount === 0 && this.balance > 0)
